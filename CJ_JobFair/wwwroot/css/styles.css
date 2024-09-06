@@ -1,0 +1,100 @@
+﻿.a4-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    page-break-before: always; /* Ensure each section starts on a new page */
+}
+
+.section {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #000; /* For demonstration - to show section boundaries */
+    overflow: hidden; /* Ensure content doesn't overflow */
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+    .table th, .table td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: center;
+    }
+
+.td-label {
+    font-weight: bold;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.td-value {
+    line-height: 1.5;
+    word-wrap: break-word;
+    text-align: left;
+}
+
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+        font-size: 12pt;
+    }
+
+    .a4-page {
+        width: 210mm; /* A4 width */
+        height: 297mm; /* A4 height */
+        display: flex;
+        flex-wrap: wrap;
+        page-break-before: always; /* Ensure each section starts on a new page */
+    }
+
+    .section {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+        float: left;
+    }
+
+    .content {
+        width: 100%;
+        height: 100%;
+        border: 1px solid #000; /* For demonstration - to show section boundaries */
+        overflow: hidden; /* Ensure content doesn't overflow */
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+        .table th, .table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+        }
+
+    .td-label {
+        font-weight: bold;
+        line-height: 1.5;
+        text-align:left;
+    }
+
+    .td-value {
+        line-height: 1.5;
+        word-wrap: break-word;
+        text-align: left;
+    }
+}

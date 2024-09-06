@@ -1,0 +1,134 @@
+﻿<title>@ViewData["Title"] - Candidate List</title>
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <div class="page-header-title">
+                    <h5 class="m-b-10"> </h5>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <ul class="breadcrumb-title">
+                    <li class="breadcrumb-item">
+                        <a href="/admin/Login/Index"> <i class="fa fa-home"></i> </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="/admin/CandidateList/DisplayCadidateList">Candidate List</a>
+                        
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#!"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card col-md-12">
+    <div class="card-header">
+        <h2>Registered Candidates</h2>
+       @* <div class="card-header-right">
+            <ul class="list-unstyled card-option">
+                <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                <li><i class="fa fa-window-maximize full-card"></i></li>
+                <li><i class="fa fa-minus minimize-card"></i></li>
+                <li><i class="fa fa-refresh reload-card"></i></li>
+                <li><i class="fa fa-trash close-card"></i></li>
+            </ul>
+        </div>*@
+    </div>
+    <div class="card-block table-border-style">
+        <div class="table-responsive">
+            <form>
+                <button id="myButton" class="ti-printer btn waves-effect waves-light hor-grd btn-grd-primary " style="margin-bottom:10px">Print</button>
+            </form>
+
+            <table class="table" id="tbls">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th> SL No</th>
+                        <th> Name</th>
+                        <th> Mobile Number</th>
+                        <th> Whatsapp Number</th>
+                        <th> Email </th>
+                        <th> place</th>
+                        @*  <th> Taluk</th>*@
+                        <th> District</th>
+                        <th> Highest Qualification</th>
+
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @if (Model != null)
+                    {
+                        var i = 0;
+                        foreach (var t in Model)
+                        {
+                            i++;
+                            <tr id="tbl">
+                                <td><input type="checkbox" name="select" value="@t.id" id="chkselect"></td>
+                                <td> @i</td>
+                                <td>@t.name</td>
+                                <td>@t.mobile</td>
+                                <td>@t.whatsapp</td>
+                                <td>@t.email</td>
+                                <td>@t.place</td>
+                                @* <td>@t.taluk</td>*@
+                                <td>@t.district</td>
+                                <td>@t.qualification</td>
+
+
+                                <td>
+                                 
+                                    <a href="/admin/CandidateList/GetCandidateDetails/@t.id" class="ti-pencil-alt"></a>
+                                    <a href="/admin/CandidateList/PrintedCadidateList/@t.id" class="ti-printer"></a>
+                                  @*  <a href="@Url.Action("PrintedCadidateList", "CandidateList", new { id = t.id})" class="ti-printer"></a>*@
+                                </td>
+                            </tr>
+
+                        }
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/jquery-3.7.0.min.js"></script>
+
+<script>
+</script>
+<script>
+
+    $("#myButton").click(function (event) {
+        event.preventDefault();
+        var searchIDs = $("#tbls input:checkbox:checked").map(function () {
+            return $(this).val();
+        }).get(); // <----
+       
+          location.href = '/admin/CandidateList/SelectedlistToPrint/?list=' + searchIDs;
+         });
+        //
+</script>
+
+<footer>
+
+    <style src="~/css/Print.css"></style>
+    <style>
+        .table td, .table th {
+            padding: 0.25rem 0.75rem;
+            width: 50%;
+        }
+
+    </style>
+
+</footer>
+
+
+
+

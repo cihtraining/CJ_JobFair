@@ -1,0 +1,58 @@
+﻿
+ <form id="registration"  enctype="multipart/form-data">
+     <h2>Registration Form</h2>
+    <div >
+        <label  class="float-label"> Name</label>
+        <input type="text" id="name" name="name" class="form-control" required onkeypress="return /[a-zA-Z\s.]/i.test(event.key)" />
+    </div>
+    <div>
+        <label  class="float-label"> Mobile Number</label>
+        <input type="text" id="mobilenumber" name="mobile" onkeypress="return /[0-9]/i.test(event.key)" minlength="10" maxlength="10" class="form-control" required />
+    </div>
+    <div>
+        <label  class="float-label"> Whatsapp Number</label>
+        <input type="text" onkeypress="return /[0-9]/i.test(event.key)" id="whatsnumber" minlength="10" maxlength="10" name="whatsapp" class="form-control" required />
+    </div>
+    <div>
+        <label  class="float-label">Email</label>
+        <input type="email" name="email" class="form-control" required id="email" onblur="validatmail()" />
+    </div>
+    <div>
+        <label  class="float-label">Place</label>
+        <input type="text" id="place" name="place" class="form-control" required onkeypress="return /[a-zA-Z\s.]/i.test(event.key)" />
+    </div>
+     <div>
+        <label  class="float-label"> Taluk</label>
+        <input type="text" id="taluk" name="taluk" class="form-control" required onkeypress="return /[a-zA-Z\s.]/i.test(event.key)" />
+    </div>
+    <div>
+        <label  class="float-label"> District</label>
+        <input type="text" id="district" name="district" class="form-control" required onkeypress="return /[a-zA-Z\s.]/i.test(event.key)" />
+    </div>
+    <div>
+        <label  class="float-label"> Highest Qualification</label>
+        <input type="text" id="qualification" name="qualification" class="form-control" required />
+    </div>
+    <div class="form-group form-default form-static-label">
+        <span class="form-bar"></span>
+        <label class="float-label" id="lbcategory">Select Event </label>
+        <select id="drpevent" required asp-items="ViewBag.eventList" name="event_id" asp class="form-control">
+            <option value="">- Select -</option>
+        </select>
+     </div>
+    <div>
+    <button id="btnsubmit" asp-action="SaveCandidate" asp-controller="Registration" formmethod="post">Submit</button>
+        <input type="reset" value="Clear" name="reset">
+    </div>
+ </form>
+
+<script src="~/js/jquery-3.7.0.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        
+    }); 
+    
+
+    
+</script>

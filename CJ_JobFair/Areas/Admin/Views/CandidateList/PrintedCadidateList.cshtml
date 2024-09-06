@@ -1,0 +1,51 @@
+﻿@{
+
+    Layout = "~/views/shared/_layout - print.cshtml";
+}
+<title>@ViewData["Title"] - Candidate List</title>
+<body>
+    <div class="page">
+              @if (Model != null)
+                {
+                    foreach (var t in Model)
+                    {
+                       <table class="table" id="tbl">
+                            <thead>
+                                <tr>
+                            <th colspan="2" style="border-right-style: dotted;"> Candidate Details</th>
+                                    <th colspan="2"> Candidate Details</th>
+                                </tr>
+                            </thead>
+                            <tr id="tbl">
+                        <td class="td" style="line-height: 3;font-weight: bold;padding-left: 10px;width: 21%;">Name <br> Mobile <br />Whatsapp Number<br />Email<br />place<br />Taluk<br />District<br />Highest Qualification</td>
+                        <td class="td" style="line-height: 3;word-wrap: break-word;border-right-style: dotted;">@t.name <br>@t.mobile <br />@t.whatsapp<br /> @t.email<br />@t.place<br />@t.taluk<br />@t.district<br />@t.qualification</td>
+                        <td class="td" style="line-height: 3;font-weight: bold;padding-left: 10px;width: 21%;">Name <br> Mobile <br />Whatsapp Number<br />Email<br />place<br />Taluk<br />Districtt<br />Highest Qualification</td>
+                        <td class="td" style="line-height: 3;word-wrap: break-word;">@t.name <br>@t.mobile <br />@t.whatsapp<br /> @t.email<br />@t.place<br />@t.taluk<br />@t.district<br />@t.qualification</td>
+                            </tr>
+                        </table>
+                    }
+        }
+    </div>
+</body>
+
+<footer>
+
+    <script src="~/js/jquery.js"></script>
+    <script src="~/js/jqueryvalidation.js"></script>
+    <script src="~/js/jquery.min.js"></script>
+    <link href="~/css/print.css" rel="stylesheet" />
+    <link href="~/css/printpage.css" rel="stylesheet" media="print" />
+
+    @*<link href="~/css/styles.css" rel="stylesheet" media="print" />*@
+    <script>
+        window.onload = function () {
+
+            window.print();
+
+        }
+
+    </script>
+</footer>
+
+
+

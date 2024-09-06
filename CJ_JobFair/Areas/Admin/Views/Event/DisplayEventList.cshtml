@@ -1,0 +1,101 @@
+﻿<title>@ViewData["Title"] - Event List</title>
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <div class="page-header-title">
+                    <h5 class="m-b-10"> </h5>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <ul class="breadcrumb-title">
+                    <li class="breadcrumb-item">
+                        <a href="/admin/Login/Index"> <i class="fa fa-home"></i> </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="@Url.Action("EventRegisration", "Event")">Event</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#!">Event List</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <style>
+
+        .table td, .table th 
+        {
+            padding: 0.25rem 0.75rem;
+            width: 50%;
+        }
+
+    </style>
+
+</footer>
+
+
+<div class="card col-md-8">
+    <div class="card-header">
+        <h2>Event List</h2>
+        <div class="card-header-right">
+            <ul class="list-unstyled card-option">
+                <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                <li><i class="fa fa-window-maximize full-card"></i></li>
+                <li><i class="fa fa-minus minimize-card"></i></li>
+                <li><i class="fa fa-refresh reload-card"></i></li>
+                <li><i class="fa fa-trash close-card"></i></li>
+            </ul>
+        </div>
+    </div>
+    <div class="card-block table-border-style">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th> SL No</th>
+                        <th>Event Name</th>
+                        <th>Event Date</th>
+                        <th>Location</th>
+                        <th>Edit/Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @if (Model != null)
+                    {
+                        var i = 0;
+                        foreach (var t in Model)
+                        {
+                            i++;
+                            <tr>
+                                <td> @i</td>
+                                <td>@t.event_name</td>
+                                <td>@t.date</td>
+                                <td>@t.location</td>
+                                <td>
+                                    @*<a href="@Url.Action("EventDetailsToEdit", "Event", new { id = t.id})" class="ti-pencil-alt" >edit</a>*@
+                                    <a href="/admin/Event/EventDetailsToEdit/@t.id" class="ti-pencil-alt"></a>
+                                    <a href="/admin/Event/DeleteEvent/@t.id" class="ti-trash"></a>
+                                </td>
+                            </tr>
+
+                        }
+
+                    }
+
+                </tbody>
+            </table>
+            <div class="text-right m-r-20">
+                <a href="/admin/Event/EventRegisration/" class=" b-b-primary text-primary">Event -> </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

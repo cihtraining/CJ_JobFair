@@ -1,0 +1,118 @@
+﻿@model CJ_JobFair.Areas.Admin.Models.RegistrationModel;
+<title>@ViewData["Title"] - Candidate Details</title>
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+            </div>
+            <div class="col-md-4">
+                <ul class="breadcrumb-title">
+                    <li class="breadcrumb-item">
+                        <a href="/admin/Login/Index"> <i class="fa fa-home"></i> </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#!">Candidate Details</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-9">
+    <div class="card">
+        <div class="card-header">
+            <h1>Candidate Details</h1>
+        </div>
+        <div class="card-block">
+            <form id=" manageEmployee" class="form-material" enctype="multipart/form-data">
+                    <div class="form-group form-default form-static-label">
+                    <input type="text" name="name" asp-for="name" class="form-control" id="txtname"   placeholder=" Name"  required/>
+                    <span class="form-bar"></span>
+                    <label id="fname" class="float-label"> Name</label>
+                </div>
+                <div class="form-group form-default form-static-label">
+                    <input type="text" onkeypress="return /[0-9]/i.test(event.key)" id="txtmobile" minlength="10" maxlength="10" name="mobile" asp-for="mobile" class="form-control" placeholder="Mobile Number" required />
+                    <span class="form-bar"></span>
+                    <label id="connum" class="float-label">Mobile Number</label>
+                </div>
+
+                <div class="form-group form-default form-static-label">
+                    <input type="text" onkeypress="return /[0-9]/i.test(event.key)" id="txtwtsapp" minlength="10" maxlength="10" name="whatsapp" asp-for="whatsapp" class="form-control" placeholder="Whatapp Number" required />
+                    <span class="form-bar"></span>
+                    <label id="wtnum" class="float-label">Whatsapp Number</label>
+
+                </div>
+                <div class="form-group form-default form-static-label">
+                    <input type="email" name="email" asp-for="email" id="txtemail" class="form-control" placeholder="Email ID" required />
+                    <span class="form-bar"></span>
+                    <label id="email" class="float-label">Email ID</label>
+                </div>
+
+
+
+                <div class="form-group form-default form-static-label">
+                    <input type="text" name="place" asp-for="place" id="txtplace" class="form-control" placeholder="Place" required />
+                    <span class="form-bar"></span>
+                    <label id="add1" class="float-label">Place</label>
+                </div>
+
+                <div class="form-group form-default form-static-label">
+                    <input type="text" name="taluk" asp-for="taluk" class="form-control" id="txttaluk" placeholder="Taluk" />
+                    <span class="form-bar"></span>
+                    <label id="add2" class="float-label">Taluk</label>
+                </div>
+
+                <div class="form-group form-default form-static-label">
+                    <input type="text" name="district" asp-for="district" class="form-control" id="txtdistrict" placeholder="District" required />
+                    <span class="form-bar"></span>
+                    <label id="post" class="float-label">District</label>
+                </div>
+
+                <div class="form-group form-default form-static-label">
+                    <input type="text" name="qualification" asp-for="qualification" id="txtqualification" class="form-control" placeholder="Qualification" required />
+                    <span class="form-bar"></span>
+                    <label id="pin" class="float-label">Qualification</label>
+                </div>
+                <div class="form-group form-default form-static-label">
+                   
+                    <select id="drpevent" required asp-items="ViewBag.eventList" name="event_id" asp-for="event_id" asp class="form-control">
+                        <option value="">- Select -</option>
+                    </select>
+                    <span class="form-bar"></span>
+                    <label class="float-label" id="lbcategory">Select Event </label>
+                </div>
+                <input type="hidden" asp-for="id" id="txtid" />
+
+                <div class="form-group form-default form-static-label">
+
+                    <button id="btnsub"  asp-action="UpdateCandidateDetails" asp-controller="CandidateList" asp-area="Admin" class="btn btn-primary waves-effect waves-light" formmethod="post">Update</button>
+                </div>
+                <div class="text-right m-r-20">
+                    <a href="/admin/CandidateList/DisplayCadidateList" class=" b-b-primary text-primary">Candidate List </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<footer>
+<script src="~/js/jquery-3.7.0.min.js"></script>
+<script>
+  
+    function redirectToupdate() 
+    {
+        // debugger;
+        // Retrieve the values from the hidden inputs
+        var id = document.getElementById('txtid').value;
+        var name = document.getElementById('txtname').value;
+        var mobile = document.getElementById('txtmobile').value;
+        var whatsapp = document.getElementById('txtwtsapp').value;
+        var email = document.getElementById('txtemail').value;
+        var taluk = document.getElementById('txttaluk').value;
+        var district = document.getElementById('txtdistrict').value;
+        var qualification = document.getElementById('txtqualification').value;
+        var place = document.getElementById('txtplace').value;
+       var url = `/admin/CandidateList/UpdateCandidateDetails?name=${name}&mobile=${mobile}&whatsapp=${whatsapp}&id=${id}&email=${email}&place=${place}&taluk=${taluk}&district=${district}&qualification=${qualification}`;
+        window.location.href = url;
+    }
+    </script>
+</footer>

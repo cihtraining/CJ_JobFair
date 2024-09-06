@@ -1,0 +1,22 @@
+﻿
+
+/* Print-specific styles */
+@media print {
+    @page {
+        size: A4;
+        margin: 20mm; /* Adjust margins as needed */
+    }
+
+    body {
+        margin: 0;
+    }
+
+    .page {
+        width: 210mm; /* A4 width */
+        height: 297mm; /* A4 height */
+        box-sizing: border-box;
+        page-break-after: always; /* Ensure content breaks between pages */
+    }
+
+   
+}

@@ -1,0 +1,563 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @*<title>@ViewData["Title"] - CSMS</title>*@
+    <link href="@Url.Content("/Adminroot/adminroot/css/site.css")" rel="stylesheet" />
+@*    <link href="@Url.Content("/Adminroot/adminroot/styles.css")" rel="stylesheet" />*@
+    
+    <link rel="icon" href="@Url.Content("/Adminroot/adminroot/assets/images/favicon.ico")" type="image/x-icon">
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="@Url.Content("/Adminroot/adminroot/assets/pages/waves/css/waves.min.css")" type="text/css" media="all">
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("/Adminroot/adminroot/assets/css/bootstrap/css/bootstrap.min.css")">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="@Url.Content("/Adminroot/adminroot/assets/pages/waves/css/waves.min.css")" type="text/css" media="all">
+    <!-- themify icon -->
+    <link rel="stylesheet" href="@Url.Content("/Adminroot/adminroot/assets/icon/themify-icons/themify-icons.css")" type="text/css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="@Url.Content("/Adminroot/adminroot/assets/icon/font-awesome/css/font-awesome.min.css")" type="text/css">
+    <!-- scrollbar.css -->
+    <link rel="stylesheet" href="@Url.Content("/Adminroot/adminroot/assets/css/jquery.mCustomScrollbar.css")" type="text/css">
+    <!-- am chart export.css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <!-- Style.css -->
+    <link rel="stylesheet" href="@Url.Content("/Adminroot/adminroot/assets/css/style.css")" type="text/css">
+
+</head>
+<body>
+    <!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="loader-track">
+            <div class="preloader-wrapper">
+                <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+                <div class="spinner-layer spinner-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-yellow">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-green">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <nav class="navbar header-navbar pcoded-header">
+                <div class="navbar-wrapper">
+                    <div class="navbar-logo">
+                        <a class="mobile-menu waves-effect waves-light" id="mobile-collapse" href="#!">
+                            <i class="ti-menu"></i>
+                        </a>
+                        <div class="mobile-search waves-effect waves-light">
+                            <div class="header-search">
+                                <div class="main-search morphsearch-search">
+                                    <div class="input-group">
+                                        <span class="input-group-addon search-close"><i class="ti-close"></i></span>
+                                        <input type="text" class="form-control" placeholder="Enter Keyword">
+                                       @* <span class="input-group-addon search-btn"><i class="ti-search"></i></span>*@
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        @*      <a href="index.html">
+                        <img class="img-fluid" src="assets/images/log.jpg" alt="Theme-Logo" />
+                        </a>*@
+                        <a class="mobile-options waves-effect waves-light">
+                            <i class="ti-more"></i>
+                        </a>
+                    </div>
+
+                    <div class="navbar-container container-fluid">
+                        <ul class="nav-left">
+                            <li>
+                                <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
+                            </li>
+                            <li class="header-search">
+                                <div class="main-search morphsearch-search">
+                                    <div class="input-group">
+                                        <span class="input-group-addon search-close"><i class="ti-close"></i></span>
+                                        <input type="text" class="form-control">
+                                        @*<span class="input-group-addon search-btn"><i class="ti-search"></i></span>*@
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#!" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
+                                    <i class="ti-fullscreen"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav-right">
+                            <li class="header-notification">
+                  @*              <a href="#!" class="waves-effect waves-light">
+                                    <i class="ti-bell"></i>
+                                    <span class="badge bg-c-red"></span>
+                                </a>*@
+                                <ul class="show-notification">
+                                    <li>
+                                        <h6>Notifications</h6>
+                                        <label class="label label-danger">New</label>
+                                    </li>
+                                    <li class="waves-effect waves-light">
+                                        <div class="media">
+                                            <img class="d-flex align-self-center img-radius" @*src="assets/images/avatar-2.jpg"*@ alt="Generic placeholder image">
+                                            <div class="media-body">
+                                                <h5 class="notification-user"> @HttpContextAccessor.HttpContext.Session.GetString("_Name")</h5>
+                                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
+                                                <span class="notification-time">30 minutes ago</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="waves-effect waves-light">
+                                        <div class="media">
+                                            <img class="d-flex align-self-center img-radius" @*src="assets/images/avatar-4.jpg"*@ alt="Generic placeholder image">
+                                            <div class="media-body">
+                                                <h5 class="notification-user">Joseph William</h5>
+                                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
+                                                <span class="notification-time">30 minutes ago</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="waves-effect waves-light">
+                                        <div class="media">
+                                            <img class="d-flex align-self-center img-radius" @*src="assets/images/avatar-3.jpg"*@ alt="Generic placeholder image">
+                                            <div class="media-body">
+                                                <h5 class="notification-user">Sara Soudein</h5>
+                                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
+                                                <span class="notification-time">30 minutes ago</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="user-profile header-notification">
+                                <a href="#!" class="waves-effect waves-light">
+                                    @*<img src="~/Images/@HttpContextAccessor.HttpContext.Session.GetString("path")" alt="Image" class="img-radius">*@
+
+
+                                    <span> @HttpContextAccessor.HttpContext.Session.GetString("_Name")</span>
+                                    <i class="ti-angle-down"></i>
+                                </a>
+                                <ul class="show-notification profile-notification">
+                                   
+                                    <li class="waves-effect waves-light">
+                                        <a href="/admin/Login/Logout">
+                                            <i class="ti-layout-sidebar-left"></i> Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    <nav class="pcoded-navbar">
+                        <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+                        <div class="pcoded-inner-navbar main-menu">
+                            <div class="">
+                                <div class="main-menu-header" style="padding:30px">
+                                    @*<img class="img-80 img-radius" src="~/Images/@HttpContextAccessor.HttpContext.Session.GetString("path")" alt="Image">*@
+                                    <div class="user-details">
+                                        <span id="more-details"> @HttpContextAccessor.HttpContext.Session.GetString("_Name")<i class="fa fa-caret-down"></i></span>
+                                    </div>
+                                </div>
+
+                                <div class="main-menu-content">
+                                    <ul>
+                                        <li class="more-details">
+                                         <a href="auth-normal-sign-in.html"><i class="ti-layout-sidebar-left"></i>Logout</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+@*                            <div class="p-15 p-b-0">
+                                <form class="form-material">
+                                    <div class="form-group form-primary">
+                                        <input type="text" name="footer-email" class="form-control" required="">
+                                        <span class="form-bar"></span>
+                                        <label class="float-label"><i class="fa fa-search m-r-10"></i>Search </label>
+                                    </div>
+                                </form>
+                            </div>*@
+                            @*<div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Layout</div>*@
+                            @*<ul class="pcoded-item pcoded-left-item">*@
+                        @*        <li class="active">
+                                    <a href="index.html" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>*@
+
+                                @*<li class="pcoded-hasmenu">
+                                <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                                <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Components</span>
+                                <span class="pcoded-mcaret"></span>
+                                </a>
+                                <ul class="pcoded-submenu">
+                                <li class=" ">
+                                <a href="accordion.html" class="waves-effect waves-dark">
+                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Accordion</span>
+                                <span class="pcoded-mcaret"></span>
+                                </a>
+                                </li>
+                                <li class=" ">
+                                <a href="breadcrumb.html" class="waves-effect waves-dark">
+                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Breadcrumbs</span>
+                                <span class="pcoded-mcaret"></span>
+                                </a>
+                                </li>
+                                <li class=" ">
+                                <a href="button.html" class="waves-effect waves-dark">
+                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Button</span>
+                                <span class="pcoded-mcaret"></span>
+                                </a>
+                                </li>
+                                <li class=" ">
+                                <a href="tabs.html" class="waves-effect waves-dark">
+                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Tabs</span>
+                                <span class="pcoded-mcaret"></span>
+                                </a>
+                                </li>
+                                <li class=" ">
+                                <a href="color.html" class="waves-effect waves-dark">
+                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Color</span>
+                                <span class="pcoded-mcaret"></span>
+                                </a>
+                                </li>
+                                <li class=" ">
+                                <a href="label-badge.html" class="waves-effect waves-dark">
+                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Label Badge</span>
+                                <span class="pcoded-mcaret"></span>
+                                </a>
+                                </li>
+                                <li class=" ">
+                                <a href="tooltip.html" class="waves-effect waves-dark">
+                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Tooltip</span>
+                                <span class="pcoded-mcaret"></span>
+                                </a>
+                                </li>
+                                <li class=" ">
+                                <a href="typography.html" class="waves-effect waves-dark">
+                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Typography</span>
+                                <span class="pcoded-mcaret"></span>
+                                </a>
+                                </li>
+                                <li class=" ">
+                                <a href="notification.html" class="waves-effect waves-dark">
+                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Notification</span>
+                                <span class="pcoded-mcaret"></span>
+                                </a>
+                                </li>
+                                <li class=" ">
+                                <a href="icon-themify.html" class="waves-effect waves-dark">
+                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Themify</span>
+                                <span class="pcoded-mcaret"></span>
+                                </a>
+                                </li>
+
+                                </ul>
+                                </li>*@
+                            @*</ul>*@
+
+                            <ul class="pcoded-item pcoded-left-item">
+
+                                <li class="pcoded-hasmenu">
+                                    @*<a href="@Url.Action("DisplayCadidateList","CandidateList" )" class="waves-effect waves-dark">*@
+                                        <a href="/admin/CandidateList/DisplayCadidateList" class="waves-effect waves-dark">
+                                        @*<span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>*@
+                                        <span class="pcoded-micon"><i class="ti-user"></i></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Cadidate Register</span>
+                                        @*  <span class="pcoded-mcaret"></span>*@
+                                    </a>
+
+                                </li>
+                            </ul>
+                            <ul class="pcoded-item pcoded-left-item">
+
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-clipboard"></i></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Event</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+
+                                        <li>
+                                            <a href="/admin/Event/EventRegisration" class="waves-effect waves-dark">
+                                            @*<a href="@Url.Action("EventRegisration","Event")" class="waves-effect waves-dark">*@
+                                                <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.form-components.main">Event </span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <ul class="pcoded-submenu">
+
+                                        <li>
+                                            <a href="/admin/Event/DisplayEventList" class="waves-effect waves-dark">
+                                            @*<a href="@Url.Action("DisplayEventList","Event")" class="waves-effect waves-dark">*@
+                                                <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.form-components.main">Event List</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+
+                        </div>
+                    </nav>
+                    <div class="pcoded-content">
+                        <!-- Page-header start -->
+                        @*<div class="page-header">
+                        <div class="page-block">
+                        <div class="row align-items-center">
+                        <div class="col-md-8">
+                        <div class="page-header-title">
+                        <h5 class="m-b-10">Dashboard </h5>
+                        <p class="m-b-0">Welcome to Mega Able</p>
+
+                        <a class="breadcrumb-item" asp-area="" asp-controller="ServiceCategory" asp-action="Manage_service">MANAGE SERVICE</a>
+                        <a class="breadcrumb-item" asp-area="" asp-controller="ServiceCategory" asp-action="Service">SERVICE</a>
+                        <a class="breadcrumb-item" asp-area="" asp-controller="ServiceCategory" asp-action="Manage_customer">CUSTOMER VIEW</a>
+
+                        <a class="breadcrumb-item" asp-area="" asp-controller="File_Upload" asp-action="file">FILES</a>
+                        <a class="breadcrumb-item" asp-area="" asp-controller="Wallet" asp-action="Wallet_show">WALLET</a>
+                        <a class="breadcrumb-item" asp-area="" asp-controller="Color_Picker" asp-action="Color">MANAGE COLOR</a>
+
+                        <a class="breadcrumb-item" asp-area="" asp-controller="Hold_Reject" asp-action="Hold">HOLD/REJECT</a>
+
+
+
+                        </div>
+                        </div>
+                        <div class="col-md-4">
+                        <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item">
+                        <a href="index.html"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                        <a href="#!">Dashboard</a>
+                        </li>
+                        </ul>
+                        </div>
+                        </div>
+                        </div>
+                        </div>*@
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Warning Section Starts -->
+    <!-- Older IE warning message -->
+    <!--[if lt IE 10]>
+    <div class="ie-warning">
+        <h1>Warning!!</h1>
+        <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+        <div class="iew-container">
+            <ul class="iew-download">
+                <li>
+                    <a href="http://www.google.com/chrome/">
+                        <img src="assets/images/browser/chrome.png" alt="Chrome">
+                        <div>Chrome</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.mozilla.org/en-US/firefox/new/">
+                        <img src="assets/images/browser/firefox.png" alt="Firefox">
+                        <div>Firefox</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.opera.com">
+                        <img src="assets/images/browser/opera.png" alt="Opera">
+                        <div>Opera</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.apple.com/safari/">
+                        <img src="assets/images/browser/safari.png" alt="Safari">
+                        <div>Safari</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                        <img src="assets/images/browser/ie.png" alt="">
+                        <div>IE (9 & above)</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <p>Sorry for the inconvenience!</p>
+    </div>
+    <![endif]-->
+    <!-- Warning Section Ends -->
+    <!-- Required Jquery -->
+    <style>
+        .pcoded .pcoded-navbar .pcoded-item {
+            display: block;
+            list-style: none;
+            margin: 0;
+            padding: 0 0 3px 0;
+            position: relative;
+        }
+    </style>
+    <script type="text/javascript" src="@Url.Content("/Adminroot/adminroot/assets/js/jquery/jquery.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Adminroot/adminroot/assets/js/jquery-ui/jquery-ui.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Adminroot/adminroot/assets/js/popper.js/popper.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Adminroot/adminroot/assets/js/bootstrap/js/bootstrap.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Adminroot/adminroot/assets/pages/widget/excanvas.js ")"></script>
+    <!-- waves js -->
+    <script src="../../assets/pages/waves/js/waves.min.js"></script>
+    <!-- jquery slimscroll js -->
+    <script type="text/javascript" src="@Url.Content("/Adminroot/adminroot/assets/js/jquery-slimscroll/jquery.slimscroll.js ")"></script>
+    <!-- modernizr js -->
+    <script type="text/javascript" src="@Url.Content("/Adminroot/adminroot/assets/js/modernizr/modernizr.js")"></script>
+    <!-- slimscroll js -->
+    <script type="text/javascript" src="@Url.Content("/Adminroot/adminroot/assets/js/SmoothScroll.js")"></script>
+    <script src=" ../../assets/js/jquery.mCustomScrollbar.concat.min.js "></script>
+    <!-- Chart js -->
+    <script type="text/javascript" src="@Url.Content("/Adminroot/adminroot/assets/js/chart.js/Chart.js")"></script>
+    <!-- amchart js -->
+    <script src="https://www.amcharts.com/lib/3/amcharts.js" src="@Url.Content("~/adminroot/assets/js/chart.js/Chart.js")"></script>
+    <script src="@Url.Content("/Adminroot/adminroot/assets/pages/widget/amchart/gauge.js")"></script>
+    <script src="@Url.Content("/Adminroot/adminroot//assets/pages/widget/amchart/serial.js")"></script>
+    <script src="@Url.Content("/Adminroot/adminroot/assets/pages/widget/amchart/light.js")"></script>
+    <script src="@Url.Content("/Adminroot/adminroot/assets/pages/widget/amchart/pie.min.js")"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js" ></script>
+    <!-- menu js -->
+    <script src="@Url.Content("/Adminroot/adminroot/assets/js/pcoded.min.js")"></script>
+    <script src="@Url.Content("/Adminroot/adminroot//assets/js/vertical-layout.min.js")"></script>
+    <!-- custom js -->
+    <script type="text/javascript" src="@Url.Content("/Adminroot/adminroot/assets/js/chart.js/Chart.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Adminroot/adminroot/assets/js/script.js ")"></script>
+</body>
+
+</html>
+
+
+
+@*  <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CSMS</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="ServiceCategory" asp-action="Manage_service">MANAGE SERVICE</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="ServiceCategory" asp-action="Service">SERVICE</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="ServiceCategory" asp-action="Manage_customer">CUSTOMER VIEW</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="File_Upload" asp-action="file">FILES</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Wallet" asp-action="Wallet_show">WALLET</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Color_Picker" asp-action="Color">MANAGE COLOR</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Hold_Reject" asp-action="Hold">HOLD/REJECT</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - CSMS - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+*@
