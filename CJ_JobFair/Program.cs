@@ -7,7 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<MySqlDatabase>(_ => new MySqlDatabase("Server=mysql-201ca13b-cihfullstackdotnet-4da2.e.aivencloud.com;User ID=avnadmin;Password=AVNS_N6L8JgMQVB4SIrKWYSE;Database=defaultdb;"));
+//builder.Services.AddTransient<MySqlDatabase>(_ => new MySqlDatabase("Server=mysql-201ca13b-cihfullstackdotnet-4da2.e.aivencloud.com;User ID=avnadmin;Password=AVNS_N6L8JgMQVB4SIrKWYSE;Database=defaultdb;"));
+builder.Services.AddTransient<MySqlDatabase>(_ => new MySqlDatabase("Server=mysql-201ca13b-cihfullstackdotnet-4da2.e.aivencloud.com;User ID=avnadmin;Password=AVNS_N6L8JgMQVB4SIrKWYSE;Database=defaultdb"));
 builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 // Add session services with options
 builder.Services.AddSession(options =>
