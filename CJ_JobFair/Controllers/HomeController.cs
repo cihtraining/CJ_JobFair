@@ -7,7 +7,7 @@ namespace CJ_JobFair.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+        //Comments
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
