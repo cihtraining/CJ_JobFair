@@ -44,7 +44,7 @@ app.UseStaticFiles();
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(
-        Path.Combine(Directory.GetCurrentDirectory(), "CJ_JobFair","Areas", "Admin", "Adminroot", "assets")),
+        Path.Combine(Directory.GetCurrentDirectory(), "Areas", "Admin", "adminroot", "assets")),
     RequestPath = "/AdminAssets"
 });
 
