@@ -16,10 +16,14 @@ RUN dotnet build "CJ_JobFair.csproj" -c Release -o /app/build
 FROM build AS publish
 RUN dotnet publish "CJ_JobFair.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
+
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "CJ_JobFair.dll"]
+
+# Set permissions for the folder
+RUN chmod -R 755 /app/CJ_JobFair/Areas/Admin/Adminroot/assets
 
 #FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 #WORKDIR /src
