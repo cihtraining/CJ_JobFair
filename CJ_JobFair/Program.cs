@@ -41,12 +41,16 @@ app.UseStaticFiles();
 //    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Adminroot")),
 //    RequestPath = "~/Adminroot"
 //});
+//app.UseStaticFiles(new StaticFileOptions
+//{
+//    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Areas", "Admin")),
+//    RequestPath = "/Adminroot"
+//});
 app.UseStaticFiles(new StaticFileOptions
 {
-    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Areas", "Admin")),
-    RequestPath = "/Adminroot"
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Areas", "Admin", "Adminroot", "assets")),
+    RequestPath = "/Adminroot/assets"
 });
-
 app.UseRouting();
 
 app.UseAuthorization();
