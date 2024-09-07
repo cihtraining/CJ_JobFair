@@ -193,6 +193,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Areas\Admin\Adminroot\assets\css\site.css" />
     <None Remove="Areas\Admin\Adminroot\favicon.ico" />
   </ItemGroup>
 
